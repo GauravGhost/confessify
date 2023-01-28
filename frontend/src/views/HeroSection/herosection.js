@@ -5,7 +5,7 @@ import { Grid, Button, TextField, Typography, useTheme } from "@mui/material";
 import swal from "sweetalert";
 import theme from "../../theme";
 import BasicAlerts from "../Notification/notification";
-import Header from "../../main-layout/header";
+import Header from "../../Header/header";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EastIcon from "@mui/icons-material/East";
 import { NavLink } from "react-router-dom";

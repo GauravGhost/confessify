@@ -1,97 +1,82 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import React from "react";
+import clsx from "clsx";
 import { makeStyles } from "@mui/styles";
-export default function SideBar() {
+import { Divider, Drawer } from "@mui/material";
+import MenuTheme from "./menubar";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider, useTheme } from "@mui/styles";
+import palette from "../../theme/palette";
+import theme from "../../theme/index";
+import { Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../../store/action/loginAction";
+import { useNavigate } from "react-router-dom";
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    "&&": {
+      width: 175,
+
+      // [theme.breakpoints.up("lg")]: {
+      //   // marginTop: 50,
+      //   height: "calc(100% - 50px)",
+      // },
+    },
+  },
+  root: {
+    "&&": {
+      backgroundColor: "black",
+
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+      padding: theme.spacing(-2),
+      width: "175px",
+    },
+  },
+  logout: {
+    marginTop: "610px",
+    cursor: "pointer",
+  },
+}));
+
+const SideBarComponent = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { open, variant, onClose, className, ...rest } = props;
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+  const logout = () => {
+    dispatch(logoutAction(navigate));
   };
-
-  const list = (anchor) => (
-    <Box
-      sx={{
-        // backgroundColor: "black",
-        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
-      }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
   return (
-    <div sx={{ backgroundColor: "black" }}>
-      {["left"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            variant="permanent"
-            classes={{
-              paper: classes.paper,
-            }}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      <Drawer
+        anchor="left"
+        classes={{ paper: classes.drawer }}
+        onClose={onClose}
+        open={open}
+        variant={variant}
+      >
+        <div {...rest} className={clsx(classes.root, className)}>
+          <MenuTheme />
+          <div className={classes.logout} onClick={logout}>
+            <Divider sx={{ backgroundColor: "white" }} />
+
+            <Typography sx={{ ml: "30px", mt: "15px" }} variant="body1">
+              Logout
+            </Typography>
+          </div>
+        </div>
+      </Drawer>
+    </>
+  );
+};
+
+// const theme = createTheme();
+
+export default function SideBar({ onClose, open, variant }) {
+  return (
+    <ThemeProvider theme={theme}>
+      <SideBarComponent onClose={onClose} open={open} variant={variant} />
+    </ThemeProvider>
   );
 }
-const useStyles = makeStyles({
-  paper: {
-    backgroundColor: "black",
-  },
-});

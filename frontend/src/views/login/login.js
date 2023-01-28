@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Grid, Button, TextField, Typography, useTheme } from "@mui/material";
-import swal from "sweetalert";
+import { ThemeProvider } from "@mui/material/styles";
+import { Button, TextField, Typography, useTheme } from "@mui/material";
+import { LoginAction } from "../../store/action";
 import theme from "../../theme";
 import Alerts from "../Notification/notification";
-import Header from "../../main-layout/header";
+import Header from "../../Header/header";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EastIcon from "@mui/icons-material/East";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ALERT_SUCCESS } from "../../store/reducer/alertReducer";
-const SignupComponent = () => {
+const SignInComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const classes = useStyles();
 
   const [values, setValues] = useState({
@@ -25,15 +27,9 @@ const SignupComponent = () => {
 
   const login = (e) => {
     e.preventDefault();
+
     if (values.username && values.password) {
-      dispatch({
-        type: ALERT_SUCCESS,
-        payload: {
-          boolean: true,
-          message: "successfully register",
-          error: false,
-        },
-      });
+      dispatch(LoginAction(values.username, values.password, navigate));
     } else {
       dispatch({
         type: ALERT_SUCCESS,
@@ -44,8 +40,6 @@ const SignupComponent = () => {
         },
       });
     }
-    // dispatch(LoginAction(values.email, values.password, navigate));
-    // navigate(`${client_app_route_url}dashboard`)
   };
 
   return (
@@ -80,7 +74,7 @@ const SignupComponent = () => {
         <Alerts />
         <form className={classes.form} onSubmit={login}>
           <Typography className={classes.title} variant="h4">
-            SIGN UP
+            SIGN IN
           </Typography>
 
           <div className={classes.line}></div>
@@ -119,7 +113,7 @@ const SignupComponent = () => {
             variant="contained"
             onClick={login}
           >
-            SIGN UP
+            SIGN IN
           </Button>
         </form>
       </div>
@@ -231,10 +225,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Signup() {
+export default function SignIn() {
   return (
     <ThemeProvider theme={theme}>
-      <SignupComponent />
+      <SignInComponent />
     </ThemeProvider>
   );
 }

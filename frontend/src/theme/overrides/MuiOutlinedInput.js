@@ -15,6 +15,7 @@ export default {
 
       background:
         "radial-gradient(50% 50% at 50% 50%, #403A5F 0%, #211E2E 100%)",
+      backgroundColor: "red",
     },
     input: {
       color: "white",

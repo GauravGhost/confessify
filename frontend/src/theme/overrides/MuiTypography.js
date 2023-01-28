@@ -32,6 +32,22 @@ export default {
         lineHeight: typography.h3.lineHeight,
         fontFamily: typography.h3.fontFamily,
       }),
+      ...(ownerState.variant === "h2" && {
+        color: "black",
+        fontWeight: typography.h4.fontWeight,
+        fontSize: typography.h4.fontSize,
+        letterSpacing: typography.h4.letterSpacing,
+        lineHeight: typography.h4.lineHeight,
+        fontFamily: typography.h4.fontFamily,
+      }),
+      ...(ownerState.variant === "h3" && {
+        color: "black",
+        fontWeight: typography.h3.fontWeight,
+        fontSize: "30px",
+        letterSpacing: typography.h3.letterSpacing,
+        lineHeight: typography.h3.lineHeight,
+        fontFamily: typography.h3.fontFamily,
+      }),
       ...(ownerState.variant === "h4" && {
         color: palette.primary.contrastText,
         fontWeight: typography.h4.fontWeight,
@@ -40,6 +56,7 @@ export default {
         lineHeight: typography.h4.lineHeight,
         fontFamily: typography.h4.fontFamily,
       }),
+
       ...(ownerState.variant === "h6" && {
         color: palette.primary.contrastText,
         fontWeight: typography.h6.fontWeight,
@@ -58,11 +75,12 @@ export default {
         fontStyle: typography.subtitle1.fontStyle,
       }),
       ...(ownerState.variant === "body1" && {
-        color: palette.text.main,
-        fontWeight: typography.h4.fontWeight,
-        letterSpacing: typography.h4.letterSpacing,
-        lineHeight: typography.h4.lineHeight,
-        fontSize: typography.h4.fontSize,
+        color: "white",
+        fontWeight: typography.body1.fontWeight,
+        fontFamily: typography.body1.fontFamily,
+        letterSpacing: typography.body1.letterSpacing,
+        lineHeight: typography.body1.lineHeight,
+        fontSize: typography.body1.fontSize,
       }),
     }),
   },

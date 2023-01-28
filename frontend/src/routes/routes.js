@@ -1,9 +1,15 @@
+import React from "react";
+
 import { client_app_route_url } from "../utils/helper";
 import { Routes, Route } from "react-router-dom";
 import Login from "../views/login/login";
 import SignUp from "../views/signup/signup";
 import Main from "../views/HeroSection/herosection";
 import Home from "../views/home/home";
+import About from "../views/about/about";
+import Posts from "../views/home/posts";
+import Search from "../views/search/search";
+import Profile from "../views/profile/profile";
 const RoutesPath = [
   {
     path: `${client_app_route_url}login`,
@@ -29,14 +35,38 @@ const RoutesPath = [
     component: Home,
     name: "home",
   },
+  {
+    path: `${client_app_route_url}about`,
+    exact: true,
+    component: About,
+    name: "about",
+  },
+  {
+    path: `${client_app_route_url}posts`,
+    exact: true,
+    component: Posts,
+    name: "posts",
+  },
+  {
+    path: `${client_app_route_url}search`,
+    exact: true,
+    component: Search,
+    name: "search",
+  },
+  {
+    path: `${client_app_route_url}profile`,
+    exact: true,
+    component: Profile,
+    name: "profile",
+  },
 ];
 
 const AllRoutes = () => {
+  console.log("AllRoutes");
   return (
     <>
       <Routes>
         {RoutesPath.map((route, index) => {
-          console.log("AllRoutes ===", route);
           return (
             <Route
               key={index}
