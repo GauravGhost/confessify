@@ -23,33 +23,8 @@ import { ThemeProvider } from "@mui/material";
 import theme from "../theme";
 import BasicAlerts from "../views/Notification/notification";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
-const Headertheme = ({ notification, severity }) => {
-  console.log(notification, severity);
-  const { onSidebarOpen } = true;
+const Headertheme = () => {
   const classes = useStyles();
-  const [activeUser, setActiveUser] = useState({
-    name: "",
-    user_id: "",
-    image: { thumbnail: "" },
-  });
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const logoutUser = () => {
-    setAnchorEl(null);
-    //  Auth.logout();
-  };
-
-  //   useEffect(() => {
-  //     // setActiveUser(props.login.user_token);
-  //   }, [props.login.user_token]);
 
   return (
     <div className={classes.flexGrow1}>
@@ -138,8 +113,7 @@ const useStyles = makeStyles((theme) => ({
   textWhite: {
     "&&": {
       color: "#fff",
-      // marginLeft: "30px",
-      // marginTop: "20px",
+
       position: "absolute",
       width: "46px",
       height: "15px",
