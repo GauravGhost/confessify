@@ -5,7 +5,6 @@ import { createTheme } from "@mui/material";
 import MuiButton from "./theme/overrides/MuiButton";
 import typography from "./theme/typography";
 const viewStyles = makeStyles((theme) => ({
- 
   backdrop: {
     zIndex: "1101 !important",
     color: "#fff",
@@ -19,4 +18,5 @@ const viewStyles = makeStyles((theme) => ({
     color: "#fff",
     marginTop: "20px !important",
   },
- 
+}));
+export default viewStyles;
