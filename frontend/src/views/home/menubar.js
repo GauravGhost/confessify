@@ -14,19 +14,15 @@ import theme from "../../theme/index";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "react-router-dom";
-// import menuItems from "../routes/nav.json";
-// import Icon from "@mui/icons-material/Icon";
 import typography from "../../theme/typography";
-import menuItems from "./nav";
+import menuItems from "../components/nav";
 
 import clsx from "clsx";
 import { client_app_route_url } from "../../utils/helper";
 import palette from "../../theme/palette";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { red } from "@mui/material/colors";
-// import theme from "../../../theme/index.js";
 const MenuBar = () => {
-  console.log("Menu");
   const classes = useStyles();
   const [menuName, setMenuName] = useState("");
 
@@ -39,7 +35,6 @@ const MenuBar = () => {
   };
 
   const menuListing = (menus) => {
-    console.log(menus);
     return menus.map((menu) => {
       if (!menu.children) {
         return (
@@ -127,7 +122,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuTheme() {
-  console.log("menu");
   return (
     <ThemeProvider theme={theme}>
       <MenuBar />

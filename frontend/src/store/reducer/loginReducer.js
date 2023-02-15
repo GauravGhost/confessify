@@ -5,6 +5,7 @@ import {
   INSERT_TOKEN_SUCCESS,
   INSERT_TOKEN_FAIL,
   LOGOUT_SUCCESS,
+  LOGIN_SUCCESSFULLY,
 } from "../action/loginAction";
 
 const initialState = {
@@ -15,7 +16,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case POST_TOKEN_BEGIN:
       return {
@@ -24,6 +24,12 @@ export default (state = initialState, action) => {
         error: {},
       };
     case POST_TOKEN_SUCCESS:
+      return {
+        ...state,
+        user_token: action.payload,
+        token_loading: false,
+      };
+    case LOGIN_SUCCESSFULLY:
       return {
         ...state,
         user_token: action.payload,

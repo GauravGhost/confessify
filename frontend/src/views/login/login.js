@@ -6,9 +6,7 @@ import { LoginAction } from "../../store/action";
 import theme from "../../theme";
 import Alerts from "../Notification/notification";
 import Header from "../../Header/header";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import EastIcon from "@mui/icons-material/East";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ALERT_SUCCESS } from "../../store/reducer/alertReducer";
 const SignInComponent = () => {
@@ -78,9 +76,7 @@ const SignInComponent = () => {
           </Typography>
 
           <div className={classes.line}></div>
-          <div className={classes.gitIcon}>
-            {/* <GitHubIcon sx={{ fontSize: "30px" }} /> */}
-          </div>
+          <div className={classes.gitIcon}></div>
           <TextField
             className={classes.textField}
             fullWidth
@@ -217,11 +213,11 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: "100px",
   },
   textField: {
-    height: "59.57143020629883px",
-    width: " 450.8454895019531px",
+    width: "424px",
+    height: "72px",
     // left: "61px",
 
-    borderRadius: "0px",
+    borderRadius: "40px",
   },
 }));
 

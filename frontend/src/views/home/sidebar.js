@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logout: {
-    marginTop: "610px",
+    marginTop: "580px",
     cursor: "pointer",
   },
 }));
@@ -61,7 +61,7 @@ const SideBarComponent = (props) => {
           <div className={classes.logout} onClick={logout}>
             <Divider sx={{ backgroundColor: "white" }} />
 
-            <Typography sx={{ ml: "30px", mt: "15px" }} variant="body1">
+            <Typography sx={{ ml: "30px", mt: "10px" }} variant="body1">
               Logout
             </Typography>
           </div>

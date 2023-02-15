@@ -1,0 +1,181 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "mity.gaurav",
+      "email": "gyanendra@gmail.com"
+    },
+    {
+      "id": 2,
+      "username": "mity.gyanendra",
+      "email": "mity@gmail.com"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userid": "users.id",
+      "username": "mity.gyanendra",
+      "isAnonymous": true,
+      "title": "I am alien",
+      "body": "I have come from another dimension where there is no space",
+      "likes": [
+        {
+          "id": "users.id11",
+          "username": "koyna khare"
+        }
+      ],
+      "comments": [
+        {
+          "id": "users.id",
+          "username": "mity.gaurav",
+          "content": "woah, cool"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "userid": "users.id",
+      "isAnonymous": false,
+      "username": "koyna khare",
+      "title": "I am alien",
+      "body": "I have come from another dimension where there is no space",
+      "likes": [
+        {
+          "id": "users.id",
+          "username": "koyna khare"
+        }
+      ],
+      "comments": [
+        {
+          "id": "users.id",
+          "username": "mity.gaurav",
+          "content": "woah, cool"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "userid": "users.id",
+      "username": "mity.gyanendra",
+      "isAnonymous": true,
+      "title": "I am alien",
+      "body": "I have come from another dimension where there is no space",
+      "likes": [
+        {
+          "id": "users.id",
+          "username": "koyna khare"
+        }
+      ],
+      "comments": [
+        {
+          "id": "users.id",
+          "username": "mity.gaurav",
+          "content": "woah, cool"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "userid": "users.id",
+      "isAnonymous": true,
+      "username": "mity.gyanendra",
+      "title": "I am alien",
+      "body": "I have come from another dimension where there is no space",
+      "likes": [
+        {
+          "id": "users.id",
+          "username": "koyna khare"
+        }
+      ],
+      "comments": [
+        {
+          "id": "users.id",
+          "username": "mity.gaurav",
+          "content": "woah, cool"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "userid": "users.id",
+      "isAnonymous": false,
+      "username": "Drashi Jain",
+      "title": "I am alien",
+      "body": "I have come from another dimension where there is no space",
+      "likes": [
+        {
+          "id": "users.id",
+          "username": "koyna khare"
+        }
+      ],
+      "comments": [
+        {
+          "id": "users.id",
+          "username": "mity.gaurav",
+          "content": "woah, cool"
+        }
+      ]
+    },
+    {
+      "userid": "users.id",
+      "title": "hello ",
+      "body": "i am koyna",
+      "isAnonymous": true,
+      "username": "mity.gyanendra",
+      "id": 6,
+      "likes": [],
+      "comments": []
+    },
+    {
+      "userid": "users.id",
+      "title": "hello",
+      "username": "mity.gyanendra",
+      "body": "i am koyna khare",
+      "isAnonymous": true,
+      "likes": [],
+      "comments": [],
+      "id": 7
+    },
+    {
+      "userid": "users.id",
+      "title": "God ",
+      "body": "god is best creator",
+      "isAnonymous": false,
+      "username": "koynakhare29@gmail.com",
+      "likes": [],
+      "comments": [],
+      "id": 8
+    },
+    {
+      "userid": "users.id",
+      "title": "imagintion",
+      "body": "best power in the world is imagination",
+      "isAnonymous": false,
+      "username": "koynakhare29@gmail.com",
+      "likes": [],
+      "comments": [],
+      "id": 9
+    },
+    {
+      "userid": "users.id",
+      "title": "hello",
+      "body": "hello",
+      "isAnonymous": true,
+      "username": "koynakhare29@gmail.com",
+      "likes": [],
+      "comments": [],
+      "id": 11
+    },
+    {
+      "userid": "users.id",
+      "title": "hello",
+      "body": "hello",
+      "isAnonymous": true,
+      "username": "koynakhare29@gmail.com",
+      "likes": [],
+      "comments": [],
+      "id": 12
+    }
+  ]
+}
