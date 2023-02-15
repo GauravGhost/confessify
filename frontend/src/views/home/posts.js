@@ -12,105 +12,144 @@ import {
 import swal from "sweetalert";
 import theme from "../../theme";
 import BasicAlerts from "../Notification/notification";
-import Header from "../../Header/header";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import EastIcon from "@mui/icons-material/East";
-import SideBar from "./sidebar";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import SimpleDialogDemo from "../components/dialogbox";
+import CommentFormDialog from "../components/commentdialogBox";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../utils/loading";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { AddLikeAction } from "../../store/action/commentaction";
+import { get } from "lodash";
+import { isEmpty } from "../../utils/helper";
+import { getAllPosts } from "../../store/action";
+import Captilaize from "../components/captalize";
 const PostsComponent = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  // const login = useSelector((state) => state.login);
-  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"), {
-    defaultMatches: true,
-  });
-  const [posts, setposts] = useState([
-    {
-      id: 1,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 2,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 3,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 4,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 4,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 4,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 4,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-    {
-      id: 4,
-      title: "Title of the Content",
-      description:
-        "This document and possible translations of it may be copied and furnished to others, and derivative works that comment on orotherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part,...read more",
-    },
-  ]);
+  const { state } = useLocation();
+  const postState = useSelector((state) => state.comment);
+  const AllPosts = useSelector((state) => state.posts);
+  const [like, setlike] = useState(false);
+  const dispatch = useDispatch();
+
+  const [posts, setposts] = useState([]);
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, []);
+  useEffect(() => {
+    if (
+      !isEmpty(
+        get(AllPosts, "posts") &&
+          !isEmpty(
+            get(AllPosts.posts, "likes") &&
+              !isEmpty(get(AllPosts.posts, "comments"))
+          )
+      )
+    ) {
+      setposts(get(AllPosts, "posts"));
+    }
+  }, [get(AllPosts, "posts")]);
+  const likeButton = (post) => {
+    const object = {
+      userId: state.user_id,
+      postId: post.id,
+    };
+
+    dispatch(AddLikeAction(object));
+  };
 
   return (
     <>
-      {posts.map((post) => {
-        return (
-          <>
-            <div className={classes.box}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <div className={classes.profile_pic}></div>
+      {postState.loading ? <Loading /> : null}
+      {posts && posts.length > 0 ? (
+        posts.map((post) => {
+          return (
+            <>
+              <div className={classes.box} onDoubleClick={likeButton}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <div className={classes.profile_pic}></div>
 
-                <div className={classes.user_name}>
-                  <Typography variant="h3">Koyna khare</Typography>
+                  <div className={classes.user_name}>
+                    <Typography variant="h3">
+                      {post.isAnonymous ? " isAnonymous" : post.username}
+                    </Typography>
+                  </div>
+                </div>
+                <hr></hr>
+                <div className={classes.title}>
+                  <Typography variant="h2" color="title">
+                    {Captilaize(post.title)}
+                  </Typography>
+                </div>
+                <div className={classes.discription}>
+                  <Typography className={classes.discription} variant="body">
+                    {Captilaize(post.body)}
+                  </Typography>
+                </div>
+                <Divider sx={{ backgroundColor: "grey", marginTop: "70px" }} />
+                <div className={classes.likecomment}>
+                  {post.likes && post.likes.length > 0 ? (
+                    !post.likes.some(
+                      (person) => person.id === state.user_id
+                    ) ? (
+                      <>
+                        <FavoriteBorderIcon
+                          className={classes.like}
+                          onClick={() => likeButton(post)}
+                        />
+                      </>
+                    ) : (
+                      <FavoriteIcon
+                        className={classes.like}
+                        onClick={() => likeButton(post)}
+                      />
+                    )
+                  ) : (
+                    <FavoriteIcon
+                      className={classes.like}
+                      onClick={() => likeButton(post)}
+                    />
+                  )}
+                  <CommentFormDialog iconName="ChatBubbleOutlineIcon" />
+                </div>
+                <div
+                  style={{
+                    marginLeft: "10px",
+                    marginTop: "0px",
+                    fontWeight: 600,
+                  }}
+                >
+                  <SimpleDialogDemo
+                    title={`${post.likes.length || 0} likes`}
+                    data={post.likes && post.likes.length > 0 ? post.likes : []}
+                    check="Likes"
+                  />
+                  <SimpleDialogDemo
+                    title={`View All ${post.comments.length || 0} Comments`}
+                    data={
+                      post.comments && post.comments.length > 0
+                        ? post.comments
+                        : []
+                    }
+                    check="Comments"
+                  />
                 </div>
               </div>
-              <div className={classes.title}>
-                <Typography variant="h2">{post.title}</Typography>
-              </div>
-              <div className={classes.discription}>
-                <h3 className={classes.discription}>{post.description}</h3>
-              </div>
-              <Divider sx={{ backgroundColor: "grey", marginTop: "70px" }} />
-              <div className={classes.likecomment}>
-                <FavoriteBorderIcon className={classes.like} />
-                <ChatBubbleOutlineIcon className={classes.comment} />
-              </div>
-            </div>
-          </>
-        );
-      })}
+            </>
+          );
+        })
+      ) : (
+        <Typography variant="h1" sx={{ textAlign: "center" }}>
+          No Posts Available
+        </Typography>
+      )}
     </>
   );
 };
@@ -160,14 +199,8 @@ const useStyles = makeStyles((theme) => ({
     // left: "50px",
   },
   discription: {
-    fontFamily: "Montserrat",
-    marginTop: "20px",
-    marginLeft: "10px",
-    // fontSize: "46px",
-    fontWeight: 700,
-    lineHeight: "26px",
-    letterSpacing: "0em",
-    // textAlign: "left",
+    marginTop: "10px",
+    marginLeft: "30px",
   },
 }));
 

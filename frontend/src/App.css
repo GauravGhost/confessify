@@ -1,0 +1,21 @@
+.MuiInputLabel-root {
+    color: white !important;
+  }
+  .MuiDialogContent-root{
+    background-color: black;
+    background:
+    "radial-gradient(50% 50% at 50% 50%, #403A5F 0%, #211E2E 100%)",
+  }
+  .MuiDialogTitle-root{
+    background-color: black;
+  }
+  .MuiDialogActions-root{
+    background-color: black;
+  }
+  .MuiList-root{
+    background-color: black;
+  }
+  .MuiListSubheader-colorPrimary{
+    background-color: black;
+    color:white
+  }

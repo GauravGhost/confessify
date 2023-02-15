@@ -8,9 +8,9 @@ export default {
   white,
   primary: {
     contrastText: white,
-    dark: "#154050",
+    dark: white,
     main: white,
-    light: "#154050",
+    light: white,
   },
   secondary: {
     contrastText: white,
@@ -51,6 +51,12 @@ export default {
   background: {
     default: "#F4F6F8",
     paper: white,
+  },
+  title: {
+    contrastText: black,
+    dark: black,
+    main: black,
+    light: black,
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200],

@@ -255,7 +255,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-console.log(theme);
 export default function Signup() {
   return (
     <ThemeProvider theme={theme}>

@@ -1,0 +1,34 @@
+
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "mity.gaurav",
+        "email": "gyanendra@gmail.com"
+      },
+      {
+        "id": 2,
+        "username": "mity.gyanendra",
+        "email": "mity@gmail.com"
+      }
+    ],
+    "posts": [
+      {
+        "id": 1,
+        "isAnonymous": true,
+        "title": "I am alien",
+        "body": "I have come from another dimension where there is no space",
+        "likes": [
+          {
+            "id": "users.id"
+          }
+        ],
+        "comments": [
+          {
+            "user": "mity.gaurav",
+            "content": "woah, cool"
+          }
+        ]
+      }
+    ]
+  }

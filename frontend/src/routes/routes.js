@@ -10,6 +10,7 @@ import About from "../views/about/about";
 import Posts from "../views/home/posts";
 import Search from "../views/search/search";
 import Profile from "../views/profile/profile";
+import CreatePost from "../views/CreatePost/createpost";
 const RoutesPath = [
   {
     path: `${client_app_route_url}login`,
@@ -59,10 +60,15 @@ const RoutesPath = [
     component: Profile,
     name: "profile",
   },
+  {
+    path: `${client_app_route_url}create`,
+    exact: true,
+    component: CreatePost,
+    name: "create",
+  },
 ];
 
 const AllRoutes = () => {
-  console.log("AllRoutes");
   return (
     <>
       <Routes>

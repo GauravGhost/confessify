@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Grid, Button, TextField, Typography, useTheme } from "@mui/material";
+import {
+  Grid,
+  Button,
+  TextField,
+  Typography,
+  useTheme,
+  Divider,
+} from "@mui/material";
 import swal from "sweetalert";
 import theme from "../../theme";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,19 +16,28 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import About from "../about/about";
+import ProfilePost from "./profilePost";
 const ProfileComponent = () => {
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
+  const handleChange = (e) => {};
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
-        <div className={classes.head}>
-          <div className={classes.profile_pic}></div>
-          <div className={classes.followerDetail}>
+      <Grid container className={classes.root}>
+        <Grid
+          item
+          className={classes.head}
+          justifyContent="space-between"
+          mt={2}
+        >
+          <Grid item className={classes.profile_pic}>
+            <img
+              src="https://media.wired.com/photos/592738b9cfe0d93c47432aef/master/w_1242,c_limit/molly-insta-lead2.jpg"
+              className={classes.profile_pic}
+            ></img>
+          </Grid>
+          <Grid item className={classes.followerDetail}>
             <h3 className={classes.user_name}>koyna khare</h3>
-            <div className={classes.follower}>
+            <Grid item className={classes.follower}>
               <h5 style={{ fontSize: "16px", color: "white", fontWeight: 100 }}>
                 <span className={classes.postCount}>200 </span> Posts
               </h5>
@@ -45,10 +61,11 @@ const ProfileComponent = () => {
               >
                 <span className={classes.postCount}>200 </span> Following
               </h5>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Grid>
+          </Grid>
+        </Grid>
+        <ProfilePost />
+      </Grid>
     </>
   );
 };
@@ -58,18 +75,22 @@ const useStyles = makeStyles((theme) => ({
     // width: "200px",
     height: "100vh",
     background: "radial-gradient(50% 50% at 50% 50%, #403A5F 0%, #211E2E 100%)",
+    justifyContent: "center",
   },
   head: {
-    width: "2000px",
+    width: "600px",
+    height: "200px",
     display: "flex",
     flexDirection: "row",
+
+    borderBottom: "1px solid grey",
   },
   profile_pic: {
     width: "200px",
-    height: "200px",
+    height: "190px",
     borderRadius: "50%",
     backgroundColor: "red",
-    marginLeft: "400px",
+    // marginLeft: "400px",
   },
   user_name: {
     color: "white",
