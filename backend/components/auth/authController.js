@@ -65,7 +65,7 @@ const register = asyncHandler(async (req, res) => {
             process.env.JWT_SECRET_KEY,
             { expiresIn: '5d' }
         )
-        return res.status(200).json({ success: true, message: "New Account Created successfully", token: accessToken })
+        return res.status(201).json({message: "New Account Created successfully", token: accessToken })
     } catch (error) {
         return res.status(500).json({ message: "Internal Server Error", error: error })
     }
