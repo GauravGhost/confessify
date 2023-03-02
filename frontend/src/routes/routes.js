@@ -30,12 +30,7 @@ const RoutesPath = [
     component: Main,
     name: "main",
   },
-  {
-    path: `${client_app_route_url}home`,
-    exact: true,
-    component: Home,
-    name: "home",
-  },
+
   {
     path: `${client_app_route_url}about`,
     exact: true,

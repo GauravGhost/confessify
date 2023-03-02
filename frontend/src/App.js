@@ -14,6 +14,7 @@ import { insertToken } from "./store/action/loginAction";
 import { client_app_route_url } from "./utils/helper";
 import SignIn from "./views/login/login";
 import Signup from "./views/signup/signup";
+import About from "./views/about/about";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,11 @@ const App = () => {
           exact={true}
           path={`${client_app_route_url}signup`}
           element={<Signup />}
+        ></Route>
+        <Route
+          exact={true}
+          path={`${client_app_route_url}about`}
+          element={<About />}
         ></Route>
       </Routes>
 

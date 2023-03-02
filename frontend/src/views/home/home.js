@@ -25,7 +25,6 @@ const HomeComponent = () => {
   };
 
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
-
   return (
     <>
       <div
@@ -78,10 +77,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Home() {
+const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <HomeComponent />
     </ThemeProvider>
   );
-}
+};
+export default Home;

@@ -30,7 +30,7 @@ const Headertheme = () => {
     <div className={classes.flexGrow1}>
       <AcUnitIcon className={classes.logo} />
       <h1 className={classes.heading}>HYDRA</h1>
-      <Link to={`${client_app_route_url}home`}>
+      <Link to={`${client_app_route_url}main`}>
         <Typography
           variant="h6"
           component="h1"
