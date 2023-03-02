@@ -6,21 +6,25 @@ const path = require('path')
 const cors = require('cors')
 const connectDB = require('./config/db')
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
 // Custom Module
 const corsOptions = require('./config/corsOptions')
 const PORT = process.env.PORT || 3500
 
 connectDB()
+app.use(bodyParser.json())
 app.use(cors(corsOptions))
-app.use(express.json())
+app.use(cookieParser())
+
 // Setting up static path
 app.use('/', express.static(path.join(__dirname, '/public')))
 
 // Routing Logic
 app.use('/', require('./routes/root'))
-// app.use('/api', require('./routes/index'))
+app.use('/api', require('./routes/index'))
 
-// Page Not found logid
+// Page Not found logic
 app.all('*',(req, res) => {
     res.status(404)
     if(req.accepts('html')){

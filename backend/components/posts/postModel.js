@@ -13,12 +13,14 @@ const postSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        max: 30
+        trim: true,
+        maxlength: 30
     },
     body: {
         type: String,
+        trim: true,
         required: true,
-        max: 500,
+        maxlength: 500,
     },
     likes: [
         {
@@ -27,15 +29,16 @@ const postSchema = new mongoose.Schema({
             default: 0
         }
     ],
-    comment: [
+    comments: [
         {
             user: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User',
-                default: 0
+                required: true
             },
             content: {
                 type: String,
+                trim: true,
                 required: true
             },
         }
@@ -43,4 +46,4 @@ const postSchema = new mongoose.Schema({
 
 })
 
-const Post = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Post', postSchema);
