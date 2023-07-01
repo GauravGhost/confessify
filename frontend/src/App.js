@@ -54,7 +54,7 @@ const App = () => {
 
   return (
     <>
-      <h1>hi koyna fhjksh</h1>
+      <h1>hi koyna </h1>
       <Routes>
         <Route exact={true} path={`/`} element={<Main />}></Route>
         <Route
